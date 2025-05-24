@@ -166,13 +166,13 @@ const Landing = () => {
           </p>
           <div className="space-x-4">
             <button
-              onClick={() => navigate("/Signup")}
+              onClick={() => navigate("https://resqq-frontend.onrender.com/Signup")}
               className="px-8 py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg font-semibold transition-all transform hover:scale-105 shadow-lg"
             >
               Register Now
             </button>
             <button
-              onClick={() => navigate("/SurvivalGuidance")}
+              onClick={() => navigate("https://resqq-frontend.onrender.com/SurvivalGuidance")}
               className="px-8 py-3 bg-white border-2 border-blue-600 text-blue-600 hover:bg-blue-50 rounded-lg font-semibold hover:text-slate-900 transition-all shadow-lg"
             >
               Survival Guidelines
