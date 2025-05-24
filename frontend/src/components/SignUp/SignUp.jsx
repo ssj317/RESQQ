@@ -47,7 +47,7 @@ const Signup = () => {
             if (response.status === 200) {
                 setSuccessMessage("Signup successful! Redirecting...");
                 setTimeout(() => {
-                    window.location.href = "/DashboardIndividual"; // Redirect to homepage or login page
+                    window.location.href = "https://resqq-frontend.onrender.com/DashboardIndividual"; // Redirect to homepage or login page
                 }, 2000);
             }
         } catch (error) {
