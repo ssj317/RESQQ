@@ -176,7 +176,7 @@ const EmergencyModal = ({ isOpen, onClose }) => {
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/auth/report", 
+        "https://resqq-backend.onrender.com/auth/report", 
         formData,
         {
           headers: { "Content-Type": "multipart/form-data" },
