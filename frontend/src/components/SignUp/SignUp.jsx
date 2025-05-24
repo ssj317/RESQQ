@@ -33,7 +33,7 @@ const Signup = () => {
 
         try {
             const response = await axios.post(
-                "http://localhost:5000/auth/signup",  // Backend URL
+                "https://resqq-backend.onrender.com/auth/signup",  // Backend URL
                 {
                     username: formData.name,
                     email: formData.email,
