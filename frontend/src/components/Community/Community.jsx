@@ -11,7 +11,7 @@ export const Community = () => {
 
   useEffect(() => {
     // Establish Socket.IO connection on component mount
-    socketRef.current = io("http://localhost:5000");
+    socketRef.current = io("https://resqq-backend.onrender.com");
 
     socketRef.current.on("connect", () => {
       console.log("Connected to backend Socket.IO");
