@@ -15,7 +15,14 @@ const MapView = () => {
     try {
       const response = await fetch('https://resqq-backend.onrender.com/auth/api/disaster-data'); // Change to your actual API endpoint
       const data = await response.json();
-      setHotspots(data);
+      
+if (Array.isArray(data)) {
+  setHotspots(data);
+} else {
+  console.error('Invalid data format from API:', data);
+  setHotspots([]); // Fallback to empty array
+}
+      
     } catch (error) {
       console.error('Error fetching hotspot data:', error);
     } finally {
