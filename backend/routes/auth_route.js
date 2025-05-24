@@ -357,56 +357,62 @@ router.get(
 );
 
 router.get('/api/disaster-data', async (req, res) => {
-    try {
-      console.log('Scraping disaster data...');
-      const browser = await puppeteer.launch({ headless: true });
-      const page = await browser.newPage();
-  
-      await page.goto('https://sachet.ndma.gov.in/', { waitUntil: 'domcontentloaded' });
-      await page.waitForSelector('.FooterLogo_cardMAP__pjpUv');
-  
-      const cards = await page.$$eval('.FooterLogo_cardMAP__pjpUv.FooterLogo_cardMAP2__2u9zC', (elements) => {
-        return elements.map((card) => {
-          const style = card.getAttribute('style');
-          let backgroundColor = null;
-  
-          // Extract background color using regex
-          const match = style?.match(/background-color:\s*([^;]+)/);
-          backgroundColor = match ? match[1].trim() : null;
-  
-          // Determine severity level
-          let severity = 'Low';
-          if (backgroundColor?.includes('rgb(176, 0, 0)')) {
-            severity = 'High';
-          } else if (backgroundColor?.includes('orange')) {
-            severity = 'Moderate';
-          }
-  
-          // Extract disaster and location info
-          const divs = card.querySelectorAll('div');
-          const disaster = divs[0]?.textContent?.trim() || 'Unknown';
-          const location = divs[1]?.textContent?.trim() || 'Unknown Location';
-  
-          return { 
-            name: location,
-            address: `${location}, India`,
-            severity,
-            disasterType: disaster
-          };
-        });
+  let browser;
+  try {
+    console.log('Scraping disaster data...');
+    browser = await puppeteer.launch({
+      headless: true,
+      args: ['--no-sandbox', '--disable-setuid-sandbox'],
+      defaultViewport: null,
+    });
+
+    const page = await browser.newPage();
+    await page.setUserAgent(
+      'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
+    );
+
+    await page.goto('https://sachet.ndma.gov.in/', { waitUntil: 'domcontentloaded' });
+
+    await page.waitForSelector('.FooterLogo_cardMAP__pjpUv.FooterLogo_cardMAP2__2u9zC', { timeout: 10000 });
+
+    const cards = await page.$$eval('.FooterLogo_cardMAP__pjpUv.FooterLogo_cardMAP2__2u9zC', (elements) => {
+      if (!elements.length) return [];
+
+      return elements.map((card) => {
+        const style = card.getAttribute('style');
+        const match = style?.match(/background-color:\s*([^;]+)/);
+        const backgroundColor = match ? match[1].trim() : null;
+
+        let severity = 'Low';
+        if (backgroundColor?.includes('rgb(176, 0, 0)')) {
+          severity = 'High';
+        } else if (backgroundColor?.includes('orange')) {
+          severity = 'Moderate';
+        }
+
+        const divs = card.querySelectorAll('div');
+        const disaster = divs[0]?.textContent?.trim() || 'Unknown';
+        const location = divs[1]?.textContent?.trim() || 'Unknown Location';
+
+        return {
+          name: location,
+          address: `${location}, India`,
+          severity,
+          disasterType: disaster,
+        };
       });
-  
-      await browser.close();
-      console.log(`Scraped ${cards.length} disaster zones`);
-      console.log("Fetched Disaster Data:", JSON.stringify(cards, null, 2)); // ✅ Debugging output
-  
-      res.json(cards);
-    } catch (error) {
-      console.error('Error scraping disaster data:', error);
-      res.status(500).json({ error: 'Failed to scrape disaster data' });
-    }
-  });
-  
+    });
+
+    console.log(`Scraped ${cards.length} zones`);
+    res.json(Array.isArray(cards) ? cards : []);
+  } catch (error) {
+    console.error('Error scraping disaster data:', error);
+    res.status(500).json({ error: 'Failed to scrape disaster data' });
+  } finally {
+    if (browser) await browser.close();
+  }
+});
+
 
 
 
