@@ -31,7 +31,7 @@ const Login = () => {
       alert("Login successful!");
 
       // ✅ Redirect to home page after login
-      window.location.href = "https://resqq-frontend.onrender.com/DashboardIndividual";
+      window.location.href = "/DashboardIndividual";
     } catch (err) {
       console.error("Login error:", err.response?.data?.message || err.message);
       setError(err.response?.data?.message || "Login failed");
