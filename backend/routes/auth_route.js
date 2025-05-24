@@ -368,7 +368,7 @@ router.get('/api/disaster-data', async (req, res) => {
         '--disable-dev-shm-usage',
         '--single-process',
         '--no-zygote',
-      ],,
+      ],
       defaultViewport: null,
     });
 
