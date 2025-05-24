@@ -206,7 +206,7 @@ const DashboardIndividual = () => {
                 <div className="flex items-center justify-between">
                     <div
                         className="h-16 w-16 relative hover:scale-110 transition-transform duration-300 cursor-pointer"
-                        onClick={() => navigate('/')}
+                        onClick={() => navigate('https://resqq-frontend.onrender.com/')}
                     >
                         <img
                             src={logo}
