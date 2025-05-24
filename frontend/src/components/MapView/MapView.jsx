@@ -13,7 +13,7 @@ const MapView = () => {
   // Fetch hotspot data from backend API
   const fetchHotspots = async () => {
     try {
-      const response = await fetch('http://localhost:5000/auth/api/disaster-data'); // Change to your actual API endpoint
+      const response = await fetch('https://resqq-backend.onrender.com/auth/api/disaster-data'); // Change to your actual API endpoint
       const data = await response.json();
       setHotspots(data);
     } catch (error) {
