@@ -10,7 +10,7 @@ const Navbar = () => {
       <div className='flex flex-row items-center justify-between p-4 px-12 border-white h-20 '>
         <div 
           className='h-28 w-28 mt-12 relative hover:scale-105 transition-transform duration-300 cursor-pointer'
-          onClick={() => navigate('/')}
+          onClick={() => navigate('https://resqq-frontend.onrender.com/')}
         >
           <img 
             src={logo} 
@@ -21,13 +21,13 @@ const Navbar = () => {
         
         <div className='text-white flex flex-row justify-between gap-4 mt-12 items-center'>
           <button 
-            onClick={() => navigate('/signup')}
+            onClick={() => navigate('https://resqq-frontend.onrender.com/signup')}
             className='border-2 border-white/60 bg-transparent hover:bg-blue-500/30 hover:scale-95 px-6 py-2 rounded-lg cursor-pointer transition-all duration-300 text-sm font-medium hover:border-white'
           >
             Sign Up
           </button>
           <button 
-            onClick={() => navigate('/login')}
+            onClick={() => navigate('https://resqq-frontend.onrender.com/login')}
             className='border-2 border-white bg-white/10 hover:bg-blue-500/30 hover:scale-95 px-6 py-2 rounded-lg cursor-pointer transition-all duration-300 text-sm font-medium'
           >
             Login
