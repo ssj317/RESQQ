@@ -206,7 +206,7 @@ const DashboardIndividual = () => {
                 <div className="flex items-center justify-between">
                     <div
                         className="h-16 w-16 relative hover:scale-110 transition-transform duration-300 cursor-pointer"
-                        onClick={() => navigate('https://resqq-frontend.onrender.com/')}
+                        onClick={() => navigate('/')}
                     >
                         <img
                             src={logo}
@@ -278,7 +278,7 @@ const DashboardIndividual = () => {
                             <button
     onClick={() => {
         localStorage.clear();  // or use localStorage.removeItem("token") if you're storing a token
-        navigate('https://resqq-frontend.onrender.com/login');    // adjust route as per your routing setup
+        navigate('/login');    // adjust route as per your routing setup
     }}
     className="flex items-center space-x-3 w-full p-3 rounded-lg text-red-600 hover:bg-red-50 transition-all duration-200"
 >
