@@ -22,7 +22,7 @@ const Login = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/auth/login", 
+        "https://resqq-backend.onrender.com/auth/login", 
         formData,
         { withCredentials: true }  
       );
@@ -40,7 +40,7 @@ const Login = () => {
 
   // ✅ Correct Google Login Flow
   const handleGoogleLogin = () => {
-    window.location.href = "http://localhost:5000/auth/google"; // Redirect to backend
+    window.location.href = "https://resqq-backend.onrender.com/auth/google"; // Redirect to backend
   };
 
   const isFormValid = formData.email && formData.password && formData.userType;
