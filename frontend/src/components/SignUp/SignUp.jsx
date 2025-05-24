@@ -188,7 +188,7 @@ const Signup = () => {
 
                     <p className="text-center text-gray-400 text-xs mt-4">
                         Already have an account?{" "}
-                        <a href="/login" className="text-indigo-300 hover:text-indigo-200 transition duration-200">
+                        <a href="https://resqq-frontend.onrender.com/login" className="text-indigo-300 hover:text-indigo-200 transition duration-200">
                             Login
                         </a>
                     </p>
